@@ -1,0 +1,42 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="receiverUser">{{ receiverUser.name }}</ion-title>
+    <ion-title *ngIf="!receiverUser">Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content class="ion-padding">
+  <div class="chat-container">
+    <div *ngFor="let message of messages" 
+         [class.message-me]="message.sender === 'me'"
+         [class.message-them]="message.sender === 'them'"
+         class="message">
+      <div class="message-bubble">
+        {{ message.text }}
+      </div>
+      <div class="message-time">
+        {{ message.time }}
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="message-input-container">
+      <ion-input 
+        [(ngModel)]="newMessage"
+        placeholder="Type a message..."
+        (keyup.enter)="sendMessage()">
+      </ion-input>
+      <ion-button (click)="sendMessage()" [disabled]="!newMessage.trim()">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+
+</ion-footer>

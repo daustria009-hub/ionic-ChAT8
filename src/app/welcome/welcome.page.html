@@ -1,0 +1,39 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Welcome</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="welcome-container">
+    <ion-icon name="chatbubbles"></ion-icon>
+    <h1>Welcome to ChAT</h1>
+    <p>Enter your name to start chatting</p>
+    
+    <ion-item>
+      <ion-label position="stacked">Your Name</ion-label>
+      <ion-input 
+        [(ngModel)]="userName" 
+        placeholder="Enter your name"
+        (ionChange)="updatePlaceholderAvatar()">
+      </ion-input>
+    </ion-item>
+
+    <div class="profile-pic-section">
+      <ion-avatar (click)="selectImage()" class="profile-avatar">
+        <img [src]="profilePic" alt="Profile" />
+      </ion-avatar>
+      <p>Your avatar will be generated from your name</p>
+    </div>
+
+    <ion-button 
+      expand="block" 
+      (click)="startChatting()"
+      [disabled]="!userName"
+      class="start-btn">
+      Start Chatting
+    </ion-button>
+  </div>
+
+</ion-content>
